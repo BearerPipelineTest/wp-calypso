@@ -1,8 +1,22 @@
 .p2-site__create {
+	flex: 1;
 	.p2-step-wrapper__header-text {
-		font-size: var( --p2-font-size-form-xl );
+		font-size: var( --p2-font-size-form-xxl );
 		font-weight: 700;
+		text-align: center;
 	}
+}
+
+.p2-site__header-logo {
+	svg path {
+		fill: inherit;
+	}
+	margin: 24px 0 8px 32px;
+}
+
+.signup__step.is-p-2-site {
+	display: flex;
+	flex-direction: column;
 }
 
 .p2-site__site-url-container {
@@ -17,6 +31,59 @@
 	font-size: var( --p2-font-size-form );
 	top: 19px;
 	right: 24px;
+}
+
+.p2-site__wordpress-domain-default {
+	color: var( --p2-color-text );
+	line-height: 22px;
+	pointer-events: none;
+	position: absolute;
+	font-size: var( --p2-font-size-form );
+	top: 19px;
+	left: 24px;
+}
+
+.p2-site__site-wordpress-domain {
+	font-weight: 600;
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	max-width: 140px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	vertical-align: bottom;
+}
+
+.p2-step-wrapper__subheader-text {
+	text-align: center;
+}
+
+.p2-site__workspace-form-input-explanation {
+	font-style: normal;
+}
+
+.p2-site__workspace-form-notice {
+	display: flex;
+	font-size: var( --p2-font-size-form-xxs );
+}
+
+.p2-site__workspace-form-notice-wrapper {
+	margin-top: 40px;
+}
+
+.p2-site__workspace-form-notice-icon {
+	margin-right: 16px;
+	svg {
+		vertical-align: middle;
+	}
+}
+
+.p2-site__site-wordpress-domain-refresh {
+	position: absolute;
+	right: 12px;
+	top: 19px;
+	cursor: pointer;
 }
 
 .p2-site__validation-site,
@@ -118,6 +185,13 @@
 
 .p2-site__form input[type='text'].p2-site__site-url.form-text-input {
 	padding-right: 160px;
+	text-overflow: ellipsis;
+}
+
+.p2-site__form input[type='text'].p2-site__site-suggested-url.form-text-input {
+	padding-right: 160px;
+	color: transparent;
+	-webkit-text-fill-color: transparent;
 }
 
 .p2-site__form .form-input-validation {

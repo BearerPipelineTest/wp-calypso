@@ -14,9 +14,28 @@
 	line-height: 1.8;
 
 	@include break-mobile {
-		padding-left: 20px;
-		padding-right: 20px;
+		padding: 0 20px;
 		max-width: 440px;
+	}
+
+	@include break-medium {
+		padding: 0 20px;
+	}
+
+	@include break-huge {
+		padding: 80px 20px 0;
+	}
+
+	input {
+		font-family: var( --p2-font-inter );
+	}
+
+	a {
+		@extend %p2-link;
+	}
+
+	.p2-step-wrapper__header-text {
+		margin-bottom: 0.5em;
 	}
 }
 
