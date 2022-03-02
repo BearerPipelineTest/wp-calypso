@@ -14,6 +14,7 @@ import SupportInfo from 'calypso/components/support-info';
 import JetpackModuleToggle from 'calypso/my-sites/site-settings/jetpack-module-toggle';
 import SettingsSectionHeader from 'calypso/my-sites/site-settings/settings-section-header';
 import { getCustomizerUrl, isJetpackSite } from 'calypso/state/sites/selectors';
+import { getActiveTheme, getCanonicalTheme } from 'calypso/state/themes/selectors';
 import { getSelectedSite } from 'calypso/state/ui/selectors';
 
 class ThemeEnhancements extends Component {
@@ -24,6 +25,7 @@ class ThemeEnhancements extends Component {
 	};
 
 	static propTypes = {
+		currentTheme: PropTypes.object,
 		onSubmitForm: PropTypes.func.isRequired,
 		handleAutosavingToggle: PropTypes.func.isRequired,
 		handleAutosavingRadio: PropTypes.func.isRequired,
@@ -160,35 +162,52 @@ class ThemeEnhancements extends Component {
 	}
 
 	render() {
-		const { siteIsJetpack, translate } = this.props;
+		const { currentTheme, siteIsJetpack, translate } = this.props;
+		const themeSupportsInfiniteScroll =
+			currentTheme.tags && currentTheme.tags.some( ( tag ) => tag === 'infinite-scroll' );
 
-		/* eslint-disable wpcalypso/jsx-classname-namespace */
-		return (
-			<div>
-				<SettingsSectionHeader title={ translate( 'Theme enhancements' ) } />
+		let result;
 
-				<Card className="theme-enhancements__card site-settings">
-					{ siteIsJetpack ? (
-						<Fragment>
-							{ this.renderJetpackInfiniteScrollSettings() }
-							<hr />
-							{ this.renderCustomCSSSettings() }
-						</Fragment>
-					) : (
-						this.renderSimpleSiteInfiniteScrollSettings()
-					) }
-				</Card>
-			</div>
-		);
-		/* eslint-enable wpcalypso/jsx-classname-namespace */
+		if ( siteIsJetpack ) {
+			result = (
+				<div>
+					<SettingsSectionHeader title={ translate( 'Theme enhancements' ) } />
+					<Card className="theme-enhancements__card site-settings">
+						{ themeSupportsInfiniteScroll ? (
+							<Fragment>
+								{ this.renderJetpackInfiniteScrollSettings() }
+								<hr />
+								{ this.renderCustomCSSSettings() }
+							</Fragment>
+						) : (
+							this.renderCustomCSSSettings()
+						) }
+					</Card>
+				</div>
+			);
+		} else {
+			result = themeSupportsInfiniteScroll ? (
+				<div>
+					<SettingsSectionHeader title={ translate( 'Theme enhancements' ) } />
+					<Card className="theme-enhancements__card site-settings">
+						{ this.renderSimpleSiteInfiniteScrollSettings() }
+					</Card>
+				</div>
+			) : null;
+		}
+
+		return result;
 	}
 }
 
 export default connect( ( state ) => {
 	const site = getSelectedSite( state );
 	const selectedSiteId = get( site, 'ID' );
+	const currentThemeId = getActiveTheme( state, selectedSiteId );
+	const currentTheme = getCanonicalTheme( state, selectedSiteId, currentThemeId );
 
 	return {
+		currentTheme,
 		customizeUrl: getCustomizerUrl( state, selectedSiteId ),
 		selectedSiteId,
 		siteIsJetpack: isJetpackSite( state, selectedSiteId ),
