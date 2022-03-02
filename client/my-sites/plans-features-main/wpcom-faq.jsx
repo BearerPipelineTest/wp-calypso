@@ -19,7 +19,7 @@ const WpcomFAQ = ( { isChatAvailable, siteSlug, translate } ) => {
 
 	const themesAnswer = isEnabled( 'themes/premium' )
 		? translate(
-				"Yes! With the WordPress.com Business or eCommerce plan you can install any theme you'd like." +
+				"Yes! With the WordPress.com Managed plan you can install any theme you'd like." +
 					' All plans give you access to our {{a}}directory of free and premium themes{{/a}}.' +
 					' These are among the highest-quality WordPress themes, hand-picked and reviewed by our team.',
 				{
@@ -40,7 +40,7 @@ const WpcomFAQ = ( { isChatAvailable, siteSlug, translate } ) => {
 			<FAQItem
 				question={ translate( 'Do you sell domains?' ) }
 				answer={ translate(
-					'Yes! Annual and biannual Personal, Premium, Business, and eCommerce plans include a free custom domain for one year. ' +
+					'Yes! Annual and biannual Managed plan include a free custom domain for one year. ' +
 						'That includes new domains purchased through WordPress.com or your own existing domain that you can map' +
 						' to your WordPress.com site. Does not apply to premium domains. Domain name should be' +
 						' registered within one year of the purchase of the plan to use this promotion. Registered' +

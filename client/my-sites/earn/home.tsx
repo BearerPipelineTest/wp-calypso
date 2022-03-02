@@ -114,7 +114,7 @@ const Home: FunctionComponent< ConnectedProps > = ( {
 		// Space isn't included in the translatable string to prevent it being easily missed.
 		return isNonAtomicJetpack
 			? getAnyPlanNames()
-			: ' ' + translate( 'Available only with a Premium, Business, or eCommerce plan.' );
+			: ' ' + translate( 'Available only with the Managed plan.' );
 	};
 
 	/**
