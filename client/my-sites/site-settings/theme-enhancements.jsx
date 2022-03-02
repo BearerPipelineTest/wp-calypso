@@ -164,7 +164,7 @@ class ThemeEnhancements extends Component {
 	render() {
 		const { currentTheme, siteIsJetpack, translate } = this.props;
 		const themeSupportsInfiniteScroll =
-			currentTheme.tags && currentTheme.tags.some( ( tag ) => tag === 'infinite-scroll' );
+			currentTheme?.tags && currentTheme.tags.some( ( tag ) => tag === 'infinite-scroll' );
 
 		let result;
 
