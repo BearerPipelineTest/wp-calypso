@@ -1,7 +1,7 @@
 import {
 	findFirstSimilarPlanKey,
 	TERM_ANNUALLY,
-	TYPE_BUSINESS,
+	TYPE_MANAGED,
 	TYPE_SECURITY_DAILY,
 	FEATURE_SEO_PREVIEW_TOOLS,
 } from '@automattic/calypso-products';
@@ -38,14 +38,14 @@ export const SeoPreviewNudge = ( {
 					site &&
 					findFirstSimilarPlanKey(
 						site.plan.product_slug,
-						isJetpack ? { type: TYPE_SECURITY_DAILY, term: TERM_ANNUALLY } : { type: TYPE_BUSINESS }
+						isJetpack ? { type: TYPE_SECURITY_DAILY, term: TERM_ANNUALLY } : { type: TYPE_MANAGED }
 					)
 				}
 				title={
 					canCurrentUserUpgrade
-						? translate( 'Upgrade to a Business plan to unlock the power of our SEO tools!' )
+						? translate( 'Upgrade to a Managed plan to unlock the power of our SEO tools!' )
 						: translate(
-								"Unlock powerful SEO tools! Contact your site's administrator to upgrade to a Business plan."
+								"Unlock powerful SEO tools! Contact your site's administrator to upgrade to a Managed plan."
 						  )
 				}
 				forceDisplay

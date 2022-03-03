@@ -1,6 +1,6 @@
 import {
 	findFirstSimilarPlanKey,
-	TYPE_PREMIUM,
+	TYPE_MANAGED,
 	FEATURE_CLOUDFLARE_ANALYTICS,
 	FEATURE_GOOGLE_ANALYTICS,
 } from '@automattic/calypso-products';
@@ -119,10 +119,10 @@ export function CloudflareAnalyticsSettings( {
 	const renderForm = () => {
 		const placeholderText = isRequestingSettings ? translate( 'Loading' ) : '';
 
-		const nudgeTitle = translate( 'Available with Premium plans or higher' );
+		const nudgeTitle = translate( 'Available with Managed plan' );
 
 		const plan = findFirstSimilarPlanKey( site.plan.product_slug, {
-			type: TYPE_PREMIUM,
+			type: TYPE_MANAGED,
 		} );
 
 		const nudge = (

@@ -1,4 +1,5 @@
 import { SelectItem, SelectItems } from '@automattic/onboarding';
+import { PLAN_BUSINESS, PLAN_ECOMMERCE, PLAN_WPCOM_MANAGED } from '@automattic/calypso-products';
 import { useTranslate } from 'i18n-calypso';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -67,16 +68,17 @@ export default function StoreFeaturesStep( props: Props ): React.ReactNode {
 
 	const isPaidPlan = sitePlanSlug !== 'free_plan';
 
-	let isBusinessOrEcommercePlan;
+	let isEligiblePlan;
 
 	switch ( sitePlanSlug ) {
-		case 'business-bundle':
-		case 'ecommerce-bundle':
-			isBusinessOrEcommercePlan = true;
+		case PLAN_BUSINESS:
+		case PLAN_ECOMMERCE:
+		case PLAN_WPCOM_MANAGED:
+			isEligiblePlan = true;
 			break;
 
 		default:
-			isBusinessOrEcommercePlan = false;
+			isEligiblePlan = false;
 	}
 
 	// Only do following things when mounted
@@ -139,9 +141,9 @@ export default function StoreFeaturesStep( props: Props ): React.ReactNode {
 			description: (
 				<>
 					<span className="store-features__requirements">
-						{ isBusinessOrEcommercePlan
+						{ isEligiblePlan
 							? translate( 'Included in your plan' )
-							: translate( 'Requires a {{a}}Business plan{{/a}}', {
+							: translate( 'Requires a {{a}}Managed plan{{/a}}', {
 									components: {
 										a: <a href={ `/plans/${ siteSlug }` } />,
 									},

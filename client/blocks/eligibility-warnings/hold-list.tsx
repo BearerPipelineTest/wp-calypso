@@ -12,7 +12,7 @@ import { isAtomicSiteWithoutBusinessPlan } from './utils';
 function getHoldMessages( context: string | null, translate: LocalizeProps[ 'translate' ] ) {
 	return {
 		NO_BUSINESS_PLAN: {
-			title: translate( 'Upgrade to a Business plan' ),
+			title: translate( 'Upgrade to a Managed plan' ),
 			description: ( function () {
 				if ( context === 'themes' ) {
 					return translate(

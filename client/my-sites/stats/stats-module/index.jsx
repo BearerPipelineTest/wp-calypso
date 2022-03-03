@@ -188,7 +188,7 @@ class StatsModule extends Component {
 						<UpsellNudge
 							title={ translate( 'Add Google Analytics' ) }
 							description={ translate(
-								'Upgrade to a Premium Plan for Google Analytics integration.'
+								'Upgrade to a Managed Plan for Google Analytics integration.'
 							) }
 							event="googleAnalytics-stats-countries"
 							feature={ FEATURE_GOOGLE_ANALYTICS }

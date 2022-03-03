@@ -5,7 +5,7 @@ import {
 	isEnterprise,
 	findFirstSimilarPlanKey,
 	FEATURE_UPLOAD_PLUGINS,
-	TYPE_BUSINESS,
+	TYPE_MANAGED,
 } from '@automattic/calypso-products';
 import { Button } from '@automattic/components';
 import Search from '@automattic/search';
@@ -625,9 +625,9 @@ const UpgradeNudge = ( {
 
 	const bannerURL = `/checkout/${ siteSlug }/business`;
 	const plan = findFirstSimilarPlanKey( sitePlan.product_slug, {
-		type: TYPE_BUSINESS,
+		type: TYPE_MANAGED,
 	} );
-	const title = translate( 'Upgrade to the Business plan to install plugins.' );
+	const title = translate( 'Upgrade to the Managed plan to install plugins.' );
 
 	return (
 		<UpsellNudge

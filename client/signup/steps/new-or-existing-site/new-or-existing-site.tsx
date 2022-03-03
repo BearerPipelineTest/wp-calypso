@@ -40,7 +40,7 @@ export default function NewOrExistingSiteScreen( props: Props ): React.ReactElem
 				<div>
 					{ translate(
 						'Use with a site you already started. ' +
-							'We will delete all of your existing content, and your site will be upgraded to the Premium plan. ',
+							'We will delete all of your existing content, and your site will be upgraded to the Managed plan. ',
 						{
 							components: {
 								small: <small />,

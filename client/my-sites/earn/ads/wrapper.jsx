@@ -1,5 +1,5 @@
 import {
-	PLAN_PREMIUM,
+	PLAN_WPCOM_MANAGED,
 	PLAN_JETPACK_SECURITY_DAILY,
 	FEATURE_WORDADS_INSTANT,
 	isPremium,
@@ -201,14 +201,14 @@ class AdsWrapper extends Component {
 
 	renderUpsell() {
 		const { siteSlug, translate } = this.props;
-		const bannerURL = `/checkout/${ siteSlug }/premium`;
+		const bannerURL = `/checkout/${ siteSlug }/managed`;
 		return (
 			<UpsellNudge
 				callToAction={ translate( 'Upgrade' ) }
-				plan={ PLAN_PREMIUM }
-				title={ translate( 'Upgrade to the Premium plan and start earning' ) }
+				plan={ PLAN_WPCOM_MANAGED }
+				title={ translate( 'Upgrade to the Managed plan and start earning' ) }
 				description={ translate(
-					"By upgrading to the Premium plan, you'll be able to monetize your site through the WordAds program."
+					"By upgrading to the Managed plan, you'll be able to monetize your site through the WordAds program."
 				) }
 				feature={ FEATURE_WORDADS_INSTANT }
 				href={ bannerURL }

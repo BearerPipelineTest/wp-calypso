@@ -42,7 +42,7 @@ class NewDomainsRedirectionNoticeUpsell extends Component {
 				title={ '' }
 				description={ translate(
 					'Domains purchased on a free site will get redirected to %(primaryDomain)s. If you upgrade to ' +
-						'the Personal plan, you can use your own domain name instead of having WordPress.com ' +
+						'the Managed plan, you can use your own domain name instead of having WordPress.com ' +
 						'in your URL.',
 					{
 						args: {

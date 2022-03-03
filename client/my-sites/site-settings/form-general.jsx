@@ -1,4 +1,4 @@
-import { isBusiness, FEATURE_NO_BRANDING, PLAN_BUSINESS } from '@automattic/calypso-products';
+import { isBusiness, FEATURE_NO_BRANDING, PLAN_WPCOM_MANAGED } from '@automattic/calypso-products';
 import { Card, CompactCard, Button, Gridicon } from '@automattic/components';
 import languages from '@automattic/languages';
 import classNames from 'classnames';
@@ -671,9 +671,9 @@ export class SiteSettingsFormGeneral extends Component {
 						{ site && ! isBusiness( site.plan ) && ! siteIsVip && (
 							<UpsellNudge
 								feature={ FEATURE_NO_BRANDING }
-								plan={ PLAN_BUSINESS }
+								plan={ PLAN_WPCOM_MANAGED }
 								title={ translate(
-									'Remove the footer credit entirely with WordPress.com Business'
+									'Remove the footer credit entirely with WordPress.com Managed'
 								) }
 								description={ translate(
 									'Upgrade to remove the footer credit, use advanced SEO tools and more'

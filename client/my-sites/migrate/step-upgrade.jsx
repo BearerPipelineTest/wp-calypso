@@ -52,7 +52,7 @@ class StepUpgrade extends Component {
 
 				<CompactCard>
 					<CardHeading>
-						{ translate( 'A Business Plan is required to import everything.' ) }
+						{ translate( 'A Managed Plan is required to import everything.' ) }
 					</CardHeading>
 					<div>
 						{ translate(
