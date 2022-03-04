@@ -1,4 +1,11 @@
-import { isBusiness, FEATURE_NO_BRANDING, PLAN_WPCOM_MANAGED } from '@automattic/calypso-products';
+import {
+	isBusiness,
+	isManaged,
+	isWpComAnnualPlan,
+	FEATURE_NO_BRANDING,
+	PLAN_BUSINESS,
+	PLAN_WPCOM_MANAGED,
+} from '@automattic/calypso-products';
 import { Card, CompactCard, Button, Gridicon } from '@automattic/components';
 import languages from '@automattic/languages';
 import classNames from 'classnames';
@@ -623,6 +630,14 @@ export class SiteSettingsFormGeneral extends Component {
 			'is-loading': isRequestingSettings,
 		} );
 
+		// We currently don't have a monthly or a biennial managed plan, hence keeping the business plan upsell for those cases.
+		const upsellPlan =
+			site &&
+			! isBusiness( site.plan ) &&
+			! isManaged( site.plan ) &&
+			! siteIsVip &&
+			( isWpComAnnualPlan( site.plan.product_slug ) ? PLAN_WPCOM_MANAGED : PLAN_BUSINESS );
+
 		return (
 			<div className={ classNames( classes ) }>
 				{ site && <QuerySiteSettings siteId={ site.ID } /> }
@@ -668,10 +683,10 @@ export class SiteSettingsFormGeneral extends Component {
 								</Button>
 							</div>
 						</CompactCard>
-						{ site && ! isBusiness( site.plan ) && ! siteIsVip && (
+						{ upsellPlan && (
 							<UpsellNudge
 								feature={ FEATURE_NO_BRANDING }
-								plan={ PLAN_WPCOM_MANAGED }
+								plan={ upsellPlan }
 								title={ translate(
 									'Remove the footer credit entirely with WordPress.com Managed'
 								) }
