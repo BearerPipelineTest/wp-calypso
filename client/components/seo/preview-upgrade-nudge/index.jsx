@@ -1,7 +1,9 @@
 import {
 	findFirstSimilarPlanKey,
+	isWpComAnnualPlan,
 	TERM_ANNUALLY,
 	TYPE_MANAGED,
+	TYPE_BUSINESS,
 	TYPE_SECURITY_DAILY,
 	FEATURE_SEO_PREVIEW_TOOLS,
 } from '@automattic/calypso-products';
@@ -27,6 +29,23 @@ export const SeoPreviewNudge = ( {
 	site,
 	isJetpack = false,
 } ) => {
+	let upsellPlan;
+	if ( site ) {
+		if ( isJetpack ) {
+			upsellPlan = findFirstSimilarPlanKey( site.plan.product_slug, {
+				type: TYPE_SECURITY_DAILY,
+				term: TERM_ANNUALLY,
+			} );
+		} else {
+			upsellPlan = findFirstSimilarPlanKey(
+				site.plan.product_slug,
+				isWpComAnnualPlan( site.plan.product_slug )
+					? { type: TYPE_MANAGED }
+					: { type: TYPE_BUSINESS }
+			);
+		}
+	}
+
 	return (
 		<div className="preview-upgrade-nudge">
 			<QueryPlans />
@@ -34,13 +53,7 @@ export const SeoPreviewNudge = ( {
 
 			<UpsellNudge
 				showIcon
-				plan={
-					site &&
-					findFirstSimilarPlanKey(
-						site.plan.product_slug,
-						isJetpack ? { type: TYPE_SECURITY_DAILY, term: TERM_ANNUALLY } : { type: TYPE_MANAGED }
-					)
-				}
+				plan={ upsellPlan }
 				title={
 					canCurrentUserUpgrade
 						? translate( 'Upgrade to a Managed plan to unlock the power of our SEO tools!' )
