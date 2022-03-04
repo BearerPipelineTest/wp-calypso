@@ -1,11 +1,14 @@
 import { isEnabled } from '@automattic/calypso-config';
 import {
 	isBusiness,
+	isManaged,
+	isWpComAnnualPlan,
 	isEcommerce,
 	isEnterprise,
 	findFirstSimilarPlanKey,
 	FEATURE_UPLOAD_PLUGINS,
 	TYPE_MANAGED,
+	TYPE_BUSINESS,
 } from '@automattic/calypso-products';
 import { Button } from '@automattic/components';
 import Search from '@automattic/search';
@@ -619,15 +622,34 @@ const UpgradeNudge = ( {
 } ) => {
 	const translate = useTranslate();
 
-	if ( ! selectedSite?.ID || ! sitePlan || isVip || jetpackNonAtomic || hasBusinessPlan ) {
+	if (
+		! selectedSite?.ID ||
+		! sitePlan ||
+		isManaged( sitePlan ) ||
+		isVip ||
+		jetpackNonAtomic ||
+		hasBusinessPlan
+	) {
 		return null;
 	}
 
-	const bannerURL = `/checkout/${ siteSlug }/business`;
-	const plan = findFirstSimilarPlanKey( sitePlan.product_slug, {
-		type: TYPE_MANAGED,
-	} );
-	const title = translate( 'Upgrade to the Managed plan to install plugins.' );
+	let bannerURL;
+	let upsellPlan;
+	let upsellTitle;
+	if ( isWpComAnnualPlan( sitePlan.product_slug ) ) {
+		// We currently only have the annual term for the managed plan
+		bannerURL = `/checkout/${ siteSlug }/managed`;
+		upsellPlan = findFirstSimilarPlanKey( sitePlan.product_slug, {
+			type: TYPE_MANAGED,
+		} );
+		upsellTitle = translate( 'Upgrade to the Managed plan to install plugins.' );
+	} else {
+		bannerURL = `/checkout/${ siteSlug }/business`;
+		upsellPlan = findFirstSimilarPlanKey( sitePlan.product_slug, {
+			type: TYPE_BUSINESS,
+		} );
+		upsellTitle = translate( 'Upgrade to the Business plan to install plugins.' );
+	}
 
 	return (
 		<UpsellNudge
@@ -635,8 +657,8 @@ const UpgradeNudge = ( {
 			showIcon={ true }
 			href={ bannerURL }
 			feature={ FEATURE_UPLOAD_PLUGINS }
-			plan={ plan }
-			title={ title }
+			plan={ upsellPlan }
+			title={ upsellTitle }
 		/>
 	);
 };
