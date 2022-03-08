@@ -30,7 +30,7 @@ const selectors = {
 /**
  * Represents an instance of the WPCOM's Gutenberg editor page.
  */
-export class GutenbergEditorPage {
+export class EditorPage {
 	private page: Page;
 	private frameLocator: FrameLocator;
 	private editorPublishPanelComponent: EditorPublishPanelComponent;
