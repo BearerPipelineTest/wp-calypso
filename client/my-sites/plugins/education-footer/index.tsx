@@ -17,7 +17,37 @@ const slugify = ( string: string ) =>
 		.toLowerCase()
 		.replaceAll( ' ', '-' );
 
-const ArticleLinksContainer = styled.div`
+const FeatureItemContainer = styled.div`
+	margin-top: calc( 64px - 25px ); // adds the margin needed for 64px
+`;
+
+const FeatureItemHeader = styled.div`
+	margin-bottom: 16px;
+	font-size: var( --font-body );
+	font-weight: 500;
+	line-height: 24px;
+	color: var( --color-text-inverted );
+`;
+
+const FeatureItemContent = styled.p`
+	font-size: var( --font-body-small );
+	font-weight: 400;
+	line-height: 22px;
+	color: var( --color-neutral-20 );
+`;
+
+const FeatureItem = ( props ) => {
+	const { header, children } = props;
+
+	return (
+		<FeatureItemContainer>
+			<FeatureItemHeader>{ header }</FeatureItemHeader>
+			<FeatureItemContent>{ children }</FeatureItemContent>
+		</FeatureItemContainer>
+	);
+};
+
+const ThreeColumnContainer = styled.div`
 	@media ( max-width: 960px ) {
 		grid-template-columns: repeat( 1, 1fr );
 	}
@@ -81,20 +111,41 @@ const EducationFooter = () => {
 	];
 
 	return (
-		<FooterSection header={ translate( 'Learn More' ) }>
-			<ArticleLinksContainer>
-				{ articles.map( ( article ) => (
-					<LinkCard
-						key={ slugify( article.title ) } //TODO: find a proper util or add this one
-						label={ deslugify( article.category ) } //TODO: find a proper util or add this one
-						title={ article.title }
-						url={ article.url }
-						background={ article.background }
-						cta={ translate( 'Read More' ) }
-					/>
-				) ) }
-			</ArticleLinksContainer>
-		</FooterSection>
+		<>
+			<FooterSection header={ translate( 'Learn More' ) }>
+				<ThreeColumnContainer>
+					{ articles.map( ( article ) => (
+						<LinkCard
+							key={ slugify( article.title ) } //TODO: find a proper util or add this one
+							label={ deslugify( article.category ) } //TODO: find a proper util or add this one
+							title={ article.title }
+							url={ article.url }
+							background={ article.background }
+							cta={ translate( 'Read More' ) }
+						/>
+					) ) }
+				</ThreeColumnContainer>
+			</FooterSection>
+			<FooterSection
+				header={ translate( 'WordPress.com is the best place to get your plugins.' ) }
+				dark
+			>
+				<ThreeColumnContainer>
+					<FeatureItem header="Fully Managed">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nisl urna, lobortis eu
+						fermentum sed, ultricies ac dui.
+					</FeatureItem>
+					<FeatureItem header="One Click Checkout">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nisl urna, lobortis eu
+						fermentum sed, ultricies ac dui.
+					</FeatureItem>
+					<FeatureItem header="Quality Approved">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nisl urna, lobortis eu
+						fermentum sed, ultricies ac dui.
+					</FeatureItem>
+				</ThreeColumnContainer>
+			</FooterSection>
+		</>
 	);
 };
 
