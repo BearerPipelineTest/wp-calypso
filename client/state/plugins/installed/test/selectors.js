@@ -71,14 +71,6 @@ const state = deepFreeze( {
 } );
 
 describe( 'Installed plugin selectors', () => {
-	test( 'should contain isRequesting method', () => {
-		expect( selectors.isRequesting ).to.be.a( 'function' );
-	} );
-
-	test( 'should contain isRequestingForSites method', () => {
-		expect( selectors.isRequestingForSites ).to.be.a( 'function' );
-	} );
-
 	test( 'should contain getPlugins method', () => {
 		expect( selectors.getPlugins ).to.be.a( 'function' );
 	} );
@@ -109,52 +101,6 @@ describe( 'Installed plugin selectors', () => {
 
 	test( 'should contain isPluginDoingAction method', () => {
 		expect( selectors.isPluginDoingAction ).to.be.a( 'function' );
-	} );
-
-	describe( 'isRequesting', () => {
-		test( 'Should get `false` if this site is not in the current state', () => {
-			expect( selectors.isRequesting( state, 'no.site' ) ).to.be.false;
-		} );
-
-		test( 'Should get `false` if this site is not being fetched', () => {
-			expect( selectors.isRequesting( state, 'site.one' ) ).to.be.false;
-		} );
-
-		test( 'Should get `true` if this site is being fetched', () => {
-			expect( selectors.isRequesting( state, 'site.three' ) ).to.be.true;
-		} );
-	} );
-
-	describe( 'isLoaded', () => {
-		test( 'Should get `false` if this site is not in the current state', () => {
-			expect( selectors.isLoaded( state, 'no.site' ) ).to.be.false;
-		} );
-
-		test( 'Should get `true` if this site is done being fetched', () => {
-			expect( selectors.isLoaded( state, 'site.one' ) ).to.be.true;
-		} );
-
-		test( 'Should get `false` if this site is currently being fetched', () => {
-			expect( selectors.isLoaded( state, 'site.three' ) ).to.be.false;
-		} );
-	} );
-
-	describe( 'isRequestingForSites', () => {
-		test( 'Should get `false` if no sites are being fetched', () => {
-			expect( selectors.isRequestingForSites( state, [ 'site.one', 'site.two' ] ) ).to.be.false;
-		} );
-
-		test( 'Should get `true` if any site is being fetched', () => {
-			expect( selectors.isRequestingForSites( state, [ 'site.one', 'site.three' ] ) ).to.be.true;
-		} );
-
-		test( 'Should get `true` if any site is being fetched, even if one is not in the current state', () => {
-			expect( selectors.isRequestingForSites( state, [ 'no.site', 'site.three' ] ) ).to.be.true;
-		} );
-
-		test( 'Should get `false` if sites are not being fetched, including a site not in the current state', () => {
-			expect( selectors.isRequestingForSites( state, [ 'no.site', 'site.two' ] ) ).to.be.false;
-		} );
 	} );
 
 	describe( 'getPlugins', () => {

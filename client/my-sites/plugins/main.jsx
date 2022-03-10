@@ -15,12 +15,13 @@ import Search from 'calypso/components/search';
 import SectionNav from 'calypso/components/section-nav';
 import NavItem from 'calypso/components/section-nav/item';
 import NavTabs from 'calypso/components/section-nav/tabs';
+import withInstalledPlugins from 'calypso/data/plugins/installed/with-installed-plugins';
 import PageViewTracker from 'calypso/lib/analytics/page-view-tracker';
 import urlSearch from 'calypso/lib/url-search';
 import { getVisibleSites, siteObjectsToSiteIds } from 'calypso/my-sites/plugins/utils';
 import SidebarNavigation from 'calypso/my-sites/sidebar-navigation';
 import { recordGoogleEvent, recordTracksEvent } from 'calypso/state/analytics/actions';
-import { getPlugins, isRequestingForSites } from 'calypso/state/plugins/installed/selectors';
+import { getPlugins } from 'calypso/state/plugins/installed/selectors';
 import { fetchPluginData as wporgFetchPluginData } from 'calypso/state/plugins/wporg/actions';
 import { getAllPlugins as getAllWporgPlugins } from 'calypso/state/plugins/wporg/selectors';
 import { canCurrentUser } from 'calypso/state/selectors/can-current-user';
@@ -149,7 +150,7 @@ export class PluginsMain extends Component {
 	}
 
 	isFetchingPlugins() {
-		return this.props.requestingPluginsForSites;
+		return this.props.installedPlugins?.isFetching;
 	}
 
 	getSelectedText() {
@@ -472,6 +473,7 @@ export class PluginsMain extends Component {
 export default flow(
 	localize,
 	urlSearch,
+	withInstalledPlugins,
 	connect(
 		( state, { filter } ) => {
 			const sites = getSelectedOrAllSitesWithPlugins( state );
@@ -496,7 +498,6 @@ export default flow(
 				currentPlugins: getPlugins( state, siteIds, filter ),
 				currentPluginsOnVisibleSites: getPlugins( state, visibleSiteIds, filter ),
 				pluginUpdateCount: pluginsWithUpdates && pluginsWithUpdates.length,
-				requestingPluginsForSites: isRequestingForSites( state, siteIds ),
 				updateableJetpackSites: getUpdateableJetpackSites( state ),
 				userCanManagePlugins: selectedSiteId
 					? canCurrentUser( state, selectedSiteId, 'manage_options' )
