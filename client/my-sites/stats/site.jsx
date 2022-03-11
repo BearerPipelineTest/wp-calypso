@@ -26,6 +26,7 @@ import TrackComponentView from 'calypso/lib/analytics/track-component-view';
 import { preventWidows } from 'calypso/lib/formatting';
 import memoizeLast from 'calypso/lib/memoize-last';
 import SidebarNavigation from 'calypso/my-sites/sidebar-navigation';
+import { StatsNoContentBanner } from 'calypso/my-sites/stats/stats-no-content-banner';
 import {
 	recordGoogleEvent,
 	recordTracksEvent,
@@ -219,6 +220,7 @@ class StatsSite extends Component {
 				/>
 
 				{ isSitePrivate ? this.renderPrivateSiteBanner( siteId, slug ) : null }
+				{ ! isSitePrivate && <StatsNoContentBanner siteId={ siteId } siteSlug={ slug } /> }
 
 				<div id="my-stats-content">
 					<ChartTabs
