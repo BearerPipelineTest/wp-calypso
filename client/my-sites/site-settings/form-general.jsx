@@ -687,9 +687,7 @@ export class SiteSettingsFormGeneral extends Component {
 							<UpsellNudge
 								feature={ FEATURE_NO_BRANDING }
 								plan={ upsellPlan }
-								title={ translate(
-									'Remove the footer credit entirely with WordPress.com Managed'
-								) }
+								title={ translate( 'Remove the footer credit entirely with WordPress.com Pro' ) }
 								description={ translate(
 									'Upgrade to remove the footer credit, use advanced SEO tools and more'
 								) }
