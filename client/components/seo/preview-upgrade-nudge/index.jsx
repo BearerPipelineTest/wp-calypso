@@ -56,9 +56,9 @@ export const SeoPreviewNudge = ( {
 				plan={ upsellPlan }
 				title={
 					canCurrentUserUpgrade
-						? translate( 'Upgrade to a Managed plan to unlock the power of our SEO tools!' )
+						? translate( 'Upgrade to a Pro plan to unlock the power of our SEO tools!' )
 						: translate(
-								"Unlock powerful SEO tools! Contact your site's administrator to upgrade to a Managed plan."
+								"Unlock powerful SEO tools! Contact your site's administrator to upgrade to a Pro plan."
 						  )
 				}
 				forceDisplay

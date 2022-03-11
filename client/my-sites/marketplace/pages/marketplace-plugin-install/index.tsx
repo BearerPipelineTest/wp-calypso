@@ -262,9 +262,9 @@ const MarketplacePluginInstall = ( {
 					illustration="/calypso/images/illustrations/error.svg"
 					title={ null }
 					line={ translate(
-						"Your current plan doesn't allow plugin installation. Please upgrade to Managed plan first."
+						"Your current plan doesn't allow plugin installation. Please upgrade to Pro plan first."
 					) }
-					action={ translate( 'Upgrade to Managed Plan' ) }
+					action={ translate( 'Upgrade to Pro Plan' ) }
 					actionURL={ `/checkout/${ selectedSite?.slug }/managed?redirect_to=/marketplace/${ productSlug }/install/${ selectedSite?.slug }#step2` }
 				/>
 			);

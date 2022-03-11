@@ -43,7 +43,7 @@ const Cloudflare = () => {
 								<p className="site-settings__cloudflare-title">
 									{ translate( 'Jetpack Site Accelerator' ) }
 								</p>
-								<p>{ translate( 'Comes built-in with WordPress.com Managed plan.' ) }</p>
+								<p>{ translate( 'Comes built-in with WordPress.com Pro plan.' ) }</p>
 								<p>
 									<a
 										onClick={ recordClick }
@@ -59,7 +59,7 @@ const Cloudflare = () => {
 					</CompactCard>
 					{ sitePlan && showBizUpsell && (
 						<UpsellNudge
-							title={ translate( 'Available on Managed plan' ) }
+							title={ translate( 'Available on Pro plan' ) }
 							href={ upgradeLink }
 							event={ 'calypso_settings_cloudflare_cdn_upsell_nudge_click' }
 							showIcon={ true }

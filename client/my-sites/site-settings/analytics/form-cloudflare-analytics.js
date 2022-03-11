@@ -119,7 +119,7 @@ export function CloudflareAnalyticsSettings( {
 	const renderForm = () => {
 		const placeholderText = isRequestingSettings ? translate( 'Loading' ) : '';
 
-		const nudgeTitle = translate( 'Available with Managed plan' );
+		const nudgeTitle = translate( 'Available with Pro plan' );
 
 		const plan = findFirstSimilarPlanKey( site.plan.product_slug, {
 			type: TYPE_MANAGED,

@@ -1,5 +1,5 @@
-import { SelectItem, SelectItems } from '@automattic/onboarding';
 import { PLAN_BUSINESS, PLAN_ECOMMERCE, PLAN_WPCOM_MANAGED } from '@automattic/calypso-products';
+import { SelectItem, SelectItems } from '@automattic/onboarding';
 import { useTranslate } from 'i18n-calypso';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -143,7 +143,7 @@ export default function StoreFeaturesStep( props: Props ): React.ReactNode {
 					<span className="store-features__requirements">
 						{ isEligiblePlan
 							? translate( 'Included in your plan' )
-							: translate( 'Requires a {{a}}Managed plan{{/a}}', {
+							: translate( 'Requires a {{a}}Pro plan{{/a}}', {
 									components: {
 										a: <a href={ `/plans/${ siteSlug }` } />,
 									},

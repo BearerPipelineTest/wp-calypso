@@ -733,7 +733,7 @@ const contextLinksForSection = {
 			get description() {
 				return translate(
 					'On WordPress.com, we include the most popular plugin functionality within our ' +
-						'sites automatically. Additionally, the Managed plan allows you to choose from many ' +
+						'sites automatically. Additionally, the Pro plan allows you to choose from many ' +
 						'thousands of plugins, and install them on your site.'
 				);
 			},
@@ -762,7 +762,7 @@ const contextLinksForSection = {
 			},
 			get description() {
 				return translate(
-					'Along with all the tools and features built right into WordPress.com, the Managed plan ' +
+					'Along with all the tools and features built right into WordPress.com, the Pro plan ' +
 						'allows you to install other plugins.'
 				);
 			},
@@ -777,7 +777,7 @@ const contextLinksForSection = {
 			},
 			get description() {
 				return translate(
-					"When you want to build a one-of-a-kind website, it's time for WordPress.com Managed: " +
+					"When you want to build a one-of-a-kind website, it's time for WordPress.com Pro: " +
 						'upload plugins and themes to create a truly tailored experience for your visitors.'
 				);
 			},
@@ -1580,7 +1580,7 @@ const contextLinksForSection = {
 			},
 			get description() {
 				return translate(
-					'Sites on the Managed Plan using custom plugins and/or custom themes now have the option to switch PHP versions.'
+					'Sites on the Pro Plan using custom plugins and/or custom themes now have the option to switch PHP versions.'
 				);
 			},
 		},

@@ -74,14 +74,14 @@ export default function WPCOMUpsellPage(): ReactElement {
 				{ ! isAdmin && (
 					<Notice
 						status="is-warning"
-						text={ translate( 'Only site administrators can upgrade to the Managed plan.' ) }
+						text={ translate( 'Only site administrators can upgrade to the Pro plan.' ) }
 						showDismiss={ false }
 					/>
 				) }
 				{ isAdmin && (
 					<PromoCardCTA
 						cta={ {
-							text: translate( 'Upgrade to Managed Plan' ),
+							text: translate( 'Upgrade to Pro Plan' ),
 							action: {
 								url: `/checkout/${ siteSlug }/managed`,
 								onClick: onUpgradeClick,
@@ -94,9 +94,7 @@ export default function WPCOMUpsellPage(): ReactElement {
 
 			{ isFreePlan( planSlug ) && (
 				<>
-					<h2 className="backup__subheader">
-						{ translate( 'Also included in the Managed Plan' ) }
-					</h2>
+					<h2 className="backup__subheader">{ translate( 'Also included in the Pro Plan' ) }</h2>
 
 					<PromoSection { ...promos } />
 				</>

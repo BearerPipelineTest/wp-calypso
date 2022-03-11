@@ -411,10 +411,10 @@ class TransferDomainStep extends Component {
 				<div>
 					<UpsellNudge
 						description={ translate(
-							'Only .blog domains are included with your plan, to use a different tld upgrade to a Managed plan.'
+							'Only .blog domains are included with your plan, to use a different tld upgrade to a Pro plan.'
 						) }
 						plan={ PLAN_WPCOM_MANAGED }
-						title={ translate( 'Managed plan required' ) }
+						title={ translate( 'Pro plan required' ) }
 						showIcon={ true }
 					/>
 					{ content }

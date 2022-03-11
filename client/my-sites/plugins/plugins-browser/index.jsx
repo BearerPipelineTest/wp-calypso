@@ -642,7 +642,7 @@ const UpgradeNudge = ( {
 		upsellPlan = findFirstSimilarPlanKey( sitePlan.product_slug, {
 			type: TYPE_MANAGED,
 		} );
-		upsellTitle = translate( 'Upgrade to the Managed plan to install plugins.' );
+		upsellTitle = translate( 'Upgrade to the Pro plan to install plugins.' );
 	} else {
 		bannerURL = `/checkout/${ siteSlug }/business`;
 		upsellPlan = findFirstSimilarPlanKey( sitePlan.product_slug, {

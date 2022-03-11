@@ -73,7 +73,7 @@ class Hosting extends Component {
 
 		const getUpgradeBanner = () => (
 			<UpsellNudge
-				title={ translate( 'Upgrade to the Managed plan to access all hosting features' ) }
+				title={ translate( 'Upgrade to the Pro plan to access all hosting features' ) }
 				event="calypso_hosting_configuration_upgrade_click"
 				href={ `/checkout/${ siteId }/managed` }
 				plan={ PLAN_WPCOM_MANAGED }

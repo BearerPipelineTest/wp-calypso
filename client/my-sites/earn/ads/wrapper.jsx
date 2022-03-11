@@ -206,9 +206,9 @@ class AdsWrapper extends Component {
 			<UpsellNudge
 				callToAction={ translate( 'Upgrade' ) }
 				plan={ PLAN_WPCOM_MANAGED }
-				title={ translate( 'Upgrade to the Managed plan and start earning' ) }
+				title={ translate( 'Upgrade to the Pro plan and start earning' ) }
 				description={ translate(
-					"By upgrading to the Managed plan, you'll be able to monetize your site through the WordAds program."
+					"By upgrading to the Pro plan, you'll be able to monetize your site through the WordAds program."
 				) }
 				feature={ FEATURE_WORDADS_INSTANT }
 				href={ bannerURL }

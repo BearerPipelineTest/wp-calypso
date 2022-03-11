@@ -226,7 +226,7 @@ class PodcastingDetails extends Component {
 					{ ! error && plansDataLoaded && (
 						<UpsellNudge
 							plan={ PLAN_WPCOM_MANAGED }
-							title={ translate( 'Upload Audio with WordPress.com Managed' ) }
+							title={ translate( 'Upload Audio with WordPress.com Pro' ) }
 							description={ translate(
 								'Embed podcast episodes directly from your media library.'
 							) }

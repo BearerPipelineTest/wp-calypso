@@ -72,7 +72,7 @@ class DomainToPlanNudge extends Component {
 				plan={ PLAN_WPCOM_MANAGED }
 				price={ prices }
 				showIcon
-				title={ translate( 'Upgrade to a Managed Plan and Save!' ) }
+				title={ translate( 'Upgrade to a Pro Plan and Save!' ) }
 			/>
 		);
 	}

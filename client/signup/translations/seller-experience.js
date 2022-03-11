@@ -24,7 +24,7 @@ translate( 'Requires a {{a}}paid plan{{/a}}', {
 		a: <a href="/plans/" />,
 	},
 } );
-translate( 'Requires a {{a}}Managed plan{{/a}}', {
+translate( 'Requires a {{a}}Pro plan{{/a}}', {
 	components: {
 		a: <a href="/plans/" />,
 	},

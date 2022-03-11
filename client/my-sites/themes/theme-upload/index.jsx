@@ -215,7 +215,7 @@ class Upload extends Component {
 
 		return (
 			<UpsellNudge
-				title={ translate( 'Upgrade to the Managed plan to access the theme install features' ) }
+				title={ translate( 'Upgrade to the Pro plan to access the theme install features' ) }
 				event="calypso_theme_install_upgrade_click"
 				href={ `/checkout/${ siteId }/business?redirect_to=${ redirectTo }` }
 				plan={ PLAN_BUSINESS }

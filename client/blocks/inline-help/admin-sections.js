@@ -150,7 +150,7 @@ export const getAdminSections = createSelector(
 			{
 				title: translate( 'Earn money from my site' ),
 				description: translate(
-					"By upgrading to the Managed plan, you'll be able to monetize your site through the WordAds program."
+					"By upgrading to the Pro plan, you'll be able to monetize your site through the WordAds program."
 				),
 				link: `/earn/${ siteSlug }`,
 				synonyms: [ 'monetize', 'wordads', 'managed' ],

@@ -51,9 +51,7 @@ class StepUpgrade extends Component {
 				<HeaderCake backHref={ backHref }>{ translate( 'Import Everything' ) }</HeaderCake>
 
 				<CompactCard>
-					<CardHeading>
-						{ translate( 'A Managed Plan is required to import everything.' ) }
-					</CardHeading>
+					<CardHeading>{ translate( 'A Pro Plan is required to import everything.' ) }</CardHeading>
 					<div>
 						{ translate(
 							'To import your themes, plugins, users, and settings from %(sourceSiteDomain)s we need to upgrade your WordPress.com site.',
