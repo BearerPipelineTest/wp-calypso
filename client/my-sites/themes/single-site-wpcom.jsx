@@ -2,7 +2,6 @@ import { isEnabled } from '@automattic/calypso-config';
 import {
 	FEATURE_PREMIUM_THEMES,
 	FEATURE_UPLOAD_THEMES,
-	PLAN_BUSINESS,
 	PLAN_FREE,
 	PLAN_PERSONAL,
 	PLAN_PREMIUM,
@@ -51,8 +50,8 @@ const ConnectedSingleSiteWpcom = connectOptions( ( props ) => {
 						className="themes__showcase-banner"
 						event="calypso_themes_list_install_themes"
 						feature={ FEATURE_UPLOAD_THEMES }
-						plan={ PLAN_BUSINESS }
-						title={ translate( 'Upload your own themes with our Business plan!' ) }
+						plan={ PLAN_WPCOM_MANAGED }
+						title={ translate( 'Upload your own themes with our Pro plan!' ) }
 						forceHref={ true }
 						showIcon={ true }
 					/>
@@ -64,7 +63,7 @@ const ConnectedSingleSiteWpcom = connectOptions( ( props ) => {
 					className="themes__showcase-banner"
 					event="calypso_themes_list_install_themes"
 					feature={ FEATURE_UPLOAD_THEMES }
-					plan={ PLAN_BUSINESS }
+					plan={ PLAN_WPCOM_MANAGED }
 					title={ translate( 'Upload your own themes with our Pro plan!' ) }
 					forceHref={ true }
 					showIcon={ true }
