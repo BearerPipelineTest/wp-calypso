@@ -1,4 +1,4 @@
-import { Page, Frame, ElementHandle, Response, FrameLocator } from 'playwright';
+import { Page, Frame, ElementHandle, Response, FrameLocator, Locator } from 'playwright';
 import { getCalypsoURL } from '../../data-helper';
 import { reloadAndRetry } from '../../element-helper';
 import envVariables from '../../env-variables';
@@ -14,7 +14,8 @@ import type { PreviewOptions, EditorSidebarTab, PrivacyOptions, Schedule } from 
 
 const selectors = {
 	// iframe and editor
-	editorFrame: '.calypsoify.is-iframe iframe.is-loaded',
+	framedEditor: 'iframe.is-loaded',
+	wpAdminEditor: 'div[id="editor"]',
 	editorTitle: '.editor-post-title__input',
 
 	// Within the editor body.
@@ -26,13 +27,15 @@ const selectors = {
 	// Welcome tour
 	welcomeTourCloseButton: 'button[aria-label="Close Tour"]',
 };
+const EXTENDED_TIMEOUT = 90 * 1000;
 
 /**
  * Represents an instance of the WPCOM's Gutenberg editor page.
  */
 export class EditorPage {
 	private page: Page;
-	private frameLocator: FrameLocator;
+	private editor: FrameLocator | Locator;
+	private target: 'simple' | 'atomic';
 	private editorPublishPanelComponent: EditorPublishPanelComponent;
 	private editorNavSidebarComponent: EditorNavSidebarComponent;
 	private editorToolbarComponent: EditorToolbarComponent;
@@ -43,30 +46,29 @@ export class EditorPage {
 	 * Constructs an instance of the component.
 	 *
 	 * @param {Page} page The underlying page.
+	 * @param param0 Keyed object parameter.
+	 * @param param0.target Site type. Defaults to 'simple'.
 	 */
-	constructor( page: Page ) {
+	constructor( page: Page, { target = 'simple' }: { target?: 'simple' | 'atomic' } = {} ) {
+		let editor: FrameLocator | Locator;
+
+		// For Atomic editors, there is no frame - the editor is
+		// part of the page DOM and is thus accessible directly.
+		if ( target === 'atomic' ) {
+			editor = page.locator( selectors.wpAdminEditor );
+		} else {
+			editor = page.frameLocator( selectors.framedEditor );
+		}
+
 		this.page = page;
-		this.frameLocator = page.frameLocator( selectors.editorFrame );
-		this.editorPublishPanelComponent = new EditorPublishPanelComponent(
-			page,
-			page.frameLocator( selectors.editorFrame )
-		);
-		this.editorNavSidebarComponent = new EditorNavSidebarComponent(
-			page,
-			page.frameLocator( selectors.editorFrame )
-		);
-		this.editorToolbarComponent = new EditorToolbarComponent(
-			page,
-			page.frameLocator( selectors.editorFrame )
-		);
-		this.editorSettingsSidebarComponent = new EditorSettingsSidebarComponent(
-			page,
-			page.frameLocator( selectors.editorFrame )
-		);
-		this.editorGutenbergComponent = new EditorGutenbergComponent(
-			page,
-			page.frameLocator( selectors.editorFrame )
-		);
+		this.editor = editor;
+		this.target = target;
+
+		this.editorGutenbergComponent = new EditorGutenbergComponent( page, editor );
+		this.editorToolbarComponent = new EditorToolbarComponent( page, editor );
+		this.editorSettingsSidebarComponent = new EditorSettingsSidebarComponent( page, editor );
+		this.editorPublishPanelComponent = new EditorPublishPanelComponent( page, editor );
+		this.editorNavSidebarComponent = new EditorNavSidebarComponent( page, editor );
 	}
 
 	/* Generic methods */
@@ -89,19 +91,14 @@ export class EditorPage {
 	 *
 	 * @returns {Promise<Frame>} iframe holding the editor.
 	 */
-	async waitUntilLoaded(): Promise< Frame > {
-		const frame = await this.getEditorFrame();
-		// Traditionally we try to avoid waits not related to the current flow.
-		// However, we need a stable way to identify loading being done. NetworkIdle
-		// takes too long here, so the most reliable alternative is the title being
-		// visible.
-		const titleLocator = this.frameLocator.locator( selectors.editorTitle );
-		await titleLocator.waitFor();
+	async waitUntilLoaded(): Promise< void > {
 		// Once https://github.com/Automattic/wp-calypso/issues/57660 is resolved,
 		// the next line should be removed.
-		await this.forceDismissWelcomeTour();
+		const editor = await this.getEditorFrame();
+		const titleLocator = editor.locator( selectors.editorTitle );
+		await titleLocator.waitFor( { timeout: EXTENDED_TIMEOUT } );
 
-		return frame;
+		await this.forceDismissWelcomeTour();
 	}
 
 	/**
@@ -110,8 +107,12 @@ export class EditorPage {
 	 * @see {@link https://github.com/Automattic/wp-calypso/issues/57660}
 	 */
 	async forceDismissWelcomeTour(): Promise< void > {
-		const frame = await this.getEditorFrame();
+		// Welcome Tour is not observed on Atomic sites.
+		if ( this.target === 'atomic' ) {
+			return;
+		}
 
+		const frame = await this.getEditorFrame();
 		await frame.waitForFunction(
 			async () =>
 				await ( window as any ).wp.data
@@ -133,18 +134,20 @@ export class EditorPage {
 	 *
 	 * @returns {Promise<Frame>} iframe holding the editor.
 	 */
-	async getEditorFrame(): Promise< Frame > {
-		const locator = this.page.locator( selectors.editorFrame );
+	async getEditorFrame(): Promise< Frame | Page > {
+		// Return the page object as Atomic editor permits direct
+		// access.
+		if ( this.target === 'atomic' ) {
+			return this.page;
+		}
 
-		const elementHandle = await locator.elementHandle( {
-			timeout: 105 * 1000,
-		} );
-
+		// Framed editors need to extract the Frame.
+		const calypsoEditorLocator = this.page.locator( selectors.framedEditor );
+		const elementHandle = await calypsoEditorLocator.elementHandle( { timeout: EXTENDED_TIMEOUT } );
 		if ( ! elementHandle ) {
 			throw new Error( 'Could not locate editor iframe.' );
 		}
-
-		return ( await elementHandle.contentFrame() ) as Frame;
+		return ( await elementHandle?.contentFrame() ) as Frame;
 	}
 
 	/**
@@ -265,7 +268,7 @@ export class EditorPage {
 			type: 'pattern',
 		} );
 
-		const insertConfirmationToastLocator = this.frameLocator.locator(
+		const insertConfirmationToastLocator = this.editor.locator(
 			`.components-snackbar__content:text('Block pattern "${ patternName }" inserted.')`
 		);
 		await insertConfirmationToastLocator.waitFor();
