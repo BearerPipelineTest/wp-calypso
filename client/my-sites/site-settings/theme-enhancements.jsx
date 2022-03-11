@@ -173,15 +173,13 @@ class ThemeEnhancements extends Component {
 				<div>
 					<SettingsSectionHeader title={ translate( 'Theme enhancements' ) } />
 					<Card className="theme-enhancements__card site-settings">
-						{ themeSupportsInfiniteScroll ? (
+						{
 							<Fragment>
 								{ this.renderJetpackInfiniteScrollSettings() }
 								<hr />
 								{ this.renderCustomCSSSettings() }
 							</Fragment>
-						) : (
-							this.renderCustomCSSSettings()
-						) }
+						}
 					</Card>
 				</div>
 			);
