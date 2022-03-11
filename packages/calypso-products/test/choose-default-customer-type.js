@@ -43,7 +43,7 @@ describe( 'chooseDefaultCustomerType', () => {
 		expect( chooseDefaultCustomerType( { currentPlan } ) ).toBe( 'business' );
 	} );
 
-	test( 'chooses "business" if the site is on the Managed plan', () => {
+	test( 'chooses "business" if the site is on the Pro plan', () => {
 		const currentPlan = {
 			product_slug: PLAN_WPCOM_MANAGED,
 		};

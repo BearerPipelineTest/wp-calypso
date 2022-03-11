@@ -203,7 +203,7 @@ describe( 'isBusinessPlan', () => {
 } );
 
 describe( 'isManagedPlan', () => {
-	test( 'should return true for the Managed plan', () => {
+	test( 'should return true for the Pro plan', () => {
 		expect( isManagedPlan( PLAN_WPCOM_MANAGED ) ).to.equal( true );
 	} );
 	test( 'should return false for non-managed plans', () => {
@@ -330,7 +330,7 @@ describe( 'isWpComEcommercePlan', () => {
 } );
 
 describe( 'isWpComManagedPlan', () => {
-	test( 'should return true for the Managed plan', () => {
+	test( 'should return true for the Pro plan', () => {
 		expect( isWpComManagedPlan( PLAN_WPCOM_MANAGED ) ).to.equal( true );
 	} );
 	test( 'should return false for non-business plans', () => {

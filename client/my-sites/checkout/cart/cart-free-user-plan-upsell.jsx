@@ -62,7 +62,7 @@ class CartFreeUserPlanUpsell extends Component {
 		if ( planPrice > firstDomain.cost ) {
 			const extraToPay = planPrice - firstDomain.cost;
 			return translate(
-				'Pay an {{strong}}extra %(extraToPay)s{{/strong}} for our Managed plan, and get access to all its ' +
+				'Pay an {{strong}}extra %(extraToPay)s{{/strong}} for our Pro plan, and get access to all its ' +
 					'features, plus the first year of your domain for free.',
 				{
 					args: {
@@ -76,7 +76,7 @@ class CartFreeUserPlanUpsell extends Component {
 		} else if ( planPrice < firstDomain.cost ) {
 			const savings = firstDomain.cost - planPrice;
 			return translate(
-				'{{strong}}Save %(savings)s{{/strong}} when you purchase a WordPress.com Managed plan ' +
+				'{{strong}}Save %(savings)s{{/strong}} when you purchase a WordPress.com Pro plan ' +
 					'instead — your domain comes free for a year.',
 				{
 					args: {
@@ -90,7 +90,7 @@ class CartFreeUserPlanUpsell extends Component {
 		}
 
 		return translate(
-			'Purchase our Managed plan at {{strong}}no extra cost{{/strong}}, and get access to all its ' +
+			'Purchase our Pro plan at {{strong}}no extra cost{{/strong}}, and get access to all its ' +
 				'features, plus the first year of your domain for free.',
 			{
 				components: {
