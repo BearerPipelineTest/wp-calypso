@@ -13,7 +13,7 @@ function getDescription( plan, translate ) {
 	if ( isWpComManagedPlan( plan ) ) {
 		return translate(
 			'Enrich your posts and pages with video or audio. Upload plenty of media, ' +
-				'directly to your site — the Managed Plan has 50 GB storage.'
+				'directly to your site — the Pro Plan has 50 GB storage.'
 		);
 	}
 
