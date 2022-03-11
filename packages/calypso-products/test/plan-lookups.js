@@ -206,7 +206,7 @@ describe( 'isManagedPlan', () => {
 	test( 'should return true for the Pro plan', () => {
 		expect( isManagedPlan( PLAN_WPCOM_MANAGED ) ).to.equal( true );
 	} );
-	test( 'should return false for non-managed plans', () => {
+	test( 'should return false for non-pro plans', () => {
 		expect( isManagedPlan( PLAN_PERSONAL ) ).to.equal( false );
 		expect( isManagedPlan( PLAN_PERSONAL_2_YEARS ) ).to.equal( false );
 		expect( isManagedPlan( PLAN_JETPACK_PERSONAL ) ).to.equal( false );

@@ -637,7 +637,7 @@ const UpgradeNudge = ( {
 	let upsellPlan;
 	let upsellTitle;
 	if ( isWpComAnnualPlan( sitePlan.product_slug ) ) {
-		// We currently only have the annual term for the managed plan
+		// We currently only have the annual term for the pro plan
 		bannerURL = `/checkout/${ siteSlug }/managed`;
 		upsellPlan = findFirstSimilarPlanKey( sitePlan.product_slug, {
 			type: TYPE_MANAGED,

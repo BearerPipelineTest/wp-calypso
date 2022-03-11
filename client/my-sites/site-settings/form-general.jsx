@@ -630,7 +630,7 @@ export class SiteSettingsFormGeneral extends Component {
 			'is-loading': isRequestingSettings,
 		} );
 
-		// We currently don't have a monthly or a biennial managed plan, hence keeping the business plan upsell for those cases.
+		// We currently don't have a monthly or a biennial pro plan, hence keeping the business plan upsell for those cases.
 		const upsellPlan =
 			site &&
 			! isBusiness( site.plan ) &&
