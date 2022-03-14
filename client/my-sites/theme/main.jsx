@@ -501,6 +501,7 @@ class ThemeSheet extends Component {
 			renderedTab = (
 				<div>
 					{ isCurrentUserPaid &&
+						isWpcomTheme &&
 						! isStandaloneJetpack &&
 						this.renderSupportContactUsCard( buttonCount++ ) }
 					{ forumUrl && this.renderSupportThemeForumCard( buttonCount++ ) }
