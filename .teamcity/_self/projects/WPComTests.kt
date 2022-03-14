@@ -39,6 +39,8 @@ object WPComTests : Project({
 	buildType(gutenbergPlaywrightBuildType("mobile", "77a5a0f1-9644-4c04-9d27-0066cd2d4ada"));
 	buildType(coblocksPlaywrightBuildType("desktop", "08f88b93-993e-4de8-8d80-4a94981d9af4"));
 	buildType(coblocksPlaywrightBuildType("mobile", "cbcd44d5-4d31-4adc-b1b5-97f1225c6a7c"));
+	buildType(jetpackPlaywrightBuildType("desktop", ""));
+	buildType(jetpackPlaywrightBuildType("mobile", ""));
 	buildType(jetpackBuildType("desktop"));
 	buildType(jetpackBuildType("mobile"));
 	buildType(VisualRegressionTests);
@@ -320,6 +322,26 @@ fun coblocksPlaywrightBuildType( targetDevice: String, buildUuid: String ): E2EB
 				buildFinishedSuccessfully = true
 			}
 		},
+	)
+}
+
+fun jetpackPlaywrightBuildType( targetDevice: String, buildUuid: String): E2EBuildType {
+	return E2EBuildType (
+		buildId = "WPComTests_jetpack_Playwright_$targetDevice",
+		buildUuid = buildUuid,
+		buildName = "Playwright Jetpack E2E Tests ($targetDevice)",
+		buildDescription = "Runs Jetpack E2E tests as $targetDevice",
+		testGroup = "jetpack",
+		buildParams = {
+			text(
+				name = "env.URL",
+				value = "https://wordpress.com",
+				label = "Test URL",
+				description = "URL to test against",
+				allowEmpty = false
+			)
+			param("env.VIEWPORT_NAME", "$targetDevice")
+		}
 	)
 }
 
