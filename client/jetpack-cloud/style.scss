@@ -291,3 +291,14 @@ html {
 .masterbar {
 	font-size: $font-body;
 }
+
+.layout.focus-content .layout__secondary {
+	@media only screen and ( max-width: 782px ) {
+		transform: inherit;
+		padding: inherit;
+	}
+
+	@include breakpoint-deprecated( '<660px' ) {
+		transform: translateX( -100% );
+	}
+}
