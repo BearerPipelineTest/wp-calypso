@@ -7,6 +7,11 @@
 
 .theme-jetpack-cloud,
 .color-scheme.is-jetpack-cloud {
+	// Masterbar
+	@media only screen and ( min-width: 782px ) {
+		--masterbar-height: 46px;
+	}
+
 	.main {
 		box-sizing: border-box;
 		padding-left: 16px;

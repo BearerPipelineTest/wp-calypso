@@ -11,18 +11,6 @@
  */
 
 .theme-default {
-	// breakpoint used in wp-admin
-	@media only screen and ( min-width: 782px ) {
-		// client/assets/stylesheets/shared/_variables.scss
-		--masterbar-height: 32px;
-	}
-
-	&.is-group-sites.is-sidebar-collapsed {
-		.layout:not( .focus-sites ) {
-			--sidebar-width-max: 36px;
-			--sidebar-width-min: 36px;
-		}
-	}
 
 	$nav-unification-primary: #23282d;
 	$nav-unification-secondary: #101517;

@@ -367,6 +367,13 @@ $font-size: rem( 14px );
 }
 
 .is-sidebar-collapsed {
+	&.is-group-sites {
+		.layout:not( .focus-sites ) {
+			--sidebar-width-max: 36px;
+			--sidebar-width-min: 36px;
+		}
+	}
+
 	.layout__primary .main,
 	.layout__secondary,
 	.layout__secondary .sidebar,
