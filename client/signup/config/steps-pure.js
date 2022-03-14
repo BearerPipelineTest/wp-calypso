@@ -714,6 +714,10 @@ export function generateSteps( {
 				hideDesignTitle: true,
 			},
 		},
+		'difm-page-picker': {
+			stepName: 'difm-page-picker',
+			providesDependencies: [],
+		},
 		'site-info-collection': {
 			stepName: 'site-info-collection',
 			dependencies: [ 'newOrExistingSiteChoice' ],
