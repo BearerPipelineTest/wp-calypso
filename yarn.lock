@@ -163,7 +163,7 @@ __metadata:
     "@wordpress/dependency-extraction-webpack-plugin": ^3.2.1
     autoprefixer: ^10.2.5
     babel-loader: ^8.2.3
-    browserslist: ^4.8.2
+    browserslist: ^4.20.0
     css-loader: ^6.5.1
     css-minimizer-webpack-plugin: ^3.2.0
     duplicate-package-checker-webpack-plugin: ^3.0.0
@@ -12393,7 +12393,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:^4.0.0, browserslist@npm:^4.12.0, browserslist@npm:^4.14.5, browserslist@npm:^4.16.0, browserslist@npm:^4.16.3, browserslist@npm:^4.16.6, browserslist@npm:^4.17.5, browserslist@npm:^4.17.6, browserslist@npm:^4.19.1, browserslist@npm:^4.8.2":
+"browserslist@npm:^4.0.0, browserslist@npm:^4.12.0, browserslist@npm:^4.14.5, browserslist@npm:^4.16.0, browserslist@npm:^4.16.3, browserslist@npm:^4.16.6, browserslist@npm:^4.17.5, browserslist@npm:^4.17.6, browserslist@npm:^4.19.1, browserslist@npm:^4.20.0":
   version: 4.20.0
   resolution: "browserslist@npm:4.20.0"
   dependencies:
@@ -38290,7 +38290,7 @@ testarmada-magellan@11.0.10:
     "@wordpress/url": 3.3.2
     babel-loader: ^8.2.3
     backstopjs: 5.1.0
-    browserslist: ^4.16.0
+    browserslist: ^4.20.0
     bunyan: ^1.8.15
     calypso: "workspace:^"
     calypso-codemods: "workspace:^"
